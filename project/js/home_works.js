@@ -76,3 +76,5 @@ resetBtn.addEventListener("click", () => {
 
   secondsBlock.innerHTML = count;
 });
+
+
