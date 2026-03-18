@@ -16,10 +16,11 @@ gmailButton.addEventListener("click", () => {
 
 const childBlock = document.querySelector(".child_block");
 let positionX = 0;
+let positionY = 0
 const maxPosition = 449;
 
 const moveBlock = () => {
-  if (positionX < maxPosition && positionY === 0) {
+  if (positionX < maxxPosition && positionY === 0) {
     positionX++;
     // childBlock.style.left = `${positionX}px`;
     // requestAnimationFrame(moveBlock);
@@ -36,13 +37,11 @@ const moveBlock = () => {
 };
 moveBlock();
 
-// основы асинхроности 
-// синхронный код 
+// основы асинхроности
+// синхронный код
 // console.log (1)
 // console.log (2)
 // console.log (3)
-
-
 
 const secondsBlock = document.querySelector("#seconds");
 const startBtn = document.querySelector("#start");
@@ -77,4 +76,25 @@ resetBtn.addEventListener("click", () => {
   secondsBlock.innerHTML = count;
 });
 
-
+document.addEventListener("DOMContentLoaded", () => {
+  const charactersContainer = document.getElementById("characters-container");
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "../data/any.json");
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const characters = JSON.parse(xhr.response);
+      characters.forEach((character) => {
+        const card = document.createElement("div");
+        card.classList.add("character-card");
+        card.innerHTML = `<img src="${character.photoUrl}" alt="${character.name}"><h2>${character.name}</h2>
+            <div class="role">${character.role}</div>
+            <p>${character.description}</p>`;
+        charactersContainer.appendChild(card);
+      });
+    } else {
+      console.error("Error");
+      charactersContainer.innerHTML = "<p>не удалось загрузить данные </p>";
+    }
+  };
+  xhr.send();
+});
