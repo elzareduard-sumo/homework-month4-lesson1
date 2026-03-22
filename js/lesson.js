@@ -44,16 +44,16 @@ const autoSlider = () => {
 };
 setInterval(autoSlider, 3000);
 
-const cardBlock = document.querySelector(".card");
-const btnNext = document.querySelector("#btn-next");
-const btnPrev = document.querySelector("#btn-prev");
-btnNext.onclick = () => {
-  fetch("https://jsonplaceholder.typicode.com/todos/201")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
-};
+// const cardBlock = document.querySelector(".card");
+// const btnNext = document.querySelector("#btn-next");
+// const btnPrev = document.querySelector("#btn-prev");
+// btnNext.onclick = () => {
+//   fetch("https://jsonplaceholder.typicode.com/todos/201")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// };
 
 const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#search");
@@ -125,3 +125,39 @@ const converter = (element, targetElement1, targetElement2) => {
 converter(somInput, usdInput, eurInput);
 converter(usdInput, somInput, eurInput);
 converter(eurInput, somInput, usdInput);
+
+// домашнее задание № 6
+
+const cardBlock = document.querySelector('.card');
+const btnNext = document.querySelector('#btn-next'); 
+const btnPrev = document.querySelector('#btn-prev'); 
+
+let cardId = 1
+
+const fetchCard = (id) => {
+  fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+  .then(response => response.json())
+  .then(data => {
+    const {title, id, completed} = data 
+    const color = completed ? 'green' : 'red'
+    const text = completed ? 'completed' : 'todo'
+    cardBlock.innerHTML = `
+    <p>${title}</p>
+    <span style="color: ${color}">${text}</span>
+    <span>${id}</span>
+    `
+  })
+}
+fetchCard(cardId)
+btnNext.onclick = () => {
+  cardId++
+  if (cardId > 200) {
+    cardId = 1
+}
+fetchCard(cardId)
+}
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Данные с posts:', data); 
+    });
