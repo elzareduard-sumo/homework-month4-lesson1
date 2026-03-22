@@ -1,0 +1,32 @@
+[
+  {
+    "name": "V",
+    "role": "mercenary",
+    "description": "main character",
+    "photoUrl": "https://pbs.twimg.com/profile_images/1971698502691323904/gZWirne9_400x400.png"
+  },
+  {
+    "name": "Johny Silverhand",
+    "role": "Rokerboy",
+    "description": "main character",
+    "photoUrl": "https://www.m24.ru/b/d/nBkSUhL2hFIkkMi-Jr6BrNOp2Z3z8Zj21iDEh_fH_nKUPXuaDyXTjHou4MVO6BCVoZKf9GqVe5Q_CPawk214LyWK9G1N5ho=j8mfFKofEI5m1G0R2iD5xQ.jpg"
+  },
+  {
+    "name": "Panam Palmer",
+    "role": "nomad",
+    "description": "side character",
+    "photoUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/01/panam-palmer-smiling-with-a-beer.jpg?w=1600&h=900&fit=crop"
+  },
+  {
+    "name": "Solomon Reed",
+    "role": "FIA agent",
+    "description": "side character",
+    "photoUrl": "https://img.game8.co/3779464/4299a3f35a8247c79da705ff6b8e0406.png/show"
+  },
+  {
+    "name": "Rosalind Myers",
+    "role": "President of the NUSA",
+    "description": "side character",
+    "photoUrl": "https://pbs.twimg.com/media/F0L0_66XwAA_V08.jpg"
+  }
+]
