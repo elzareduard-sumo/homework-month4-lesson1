@@ -128,36 +128,153 @@ converter(eurInput, somInput, usdInput);
 
 // домашнее задание № 6
 
-const cardBlock = document.querySelector('.card');
-const btnNext = document.querySelector('#btn-next'); 
-const btnPrev = document.querySelector('#btn-prev'); 
+const cardBlock = document.querySelector(".card");
+const btnNext = document.querySelector("#btn-next");
+const btnPrev = document.querySelector("#btn-prev");
 
-let cardId = 1
+let cardId = 1;
 
 const fetchCard = (id) => {
   fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
-  .then(response => response.json())
-  .then(data => {
-    const {title, id, completed} = data 
-    const color = completed ? 'green' : 'red'
-    const text = completed ? 'completed' : 'todo'
-    cardBlock.innerHTML = `
+    .then((response) => response.json())
+    .then((data) => {
+      const { title, id, completed } = data;
+      const color = completed ? "green" : "red";
+      const text = completed ? "completed" : "todo";
+      cardBlock.innerHTML = `
     <p>${title}</p>
     <span style="color: ${color}">${text}</span>
     <span>${id}</span>
-    `
-  })
-}
-fetchCard(cardId)
-btnNext.onclick = () => {
-  cardId++
-  if (cardId > 200) {
-    cardId = 1
-}
-fetchCard(cardId)
-}
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => {
-        console.log('Данные с posts:', data); 
+    `;
     });
+};
+fetchCard(cardId);
+btnNext.onclick = () => {
+  cardId++;
+  if (cardId > 200) {
+    cardId = 1;
+  }
+  fetchCard(cardId);
+};
+fetch("https://jsonplaceholder.typicode.com/posts")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Данные с posts:", data);
+  });
+
+// домашнее задание № 7
+// const somInput = document.querySelector('#som');
+// const usdInput = document.querySelector('#usd');
+// const eurInput = document.querySelector('#eur');
+// const converter = async (element, targetElement1, targetElement2) => {
+//    element.oninput = async () => {
+//         try {
+//             const response = await fetch('../data/converter.json');
+
+//             const data = await response.json();
+
+//             if (element.value === '') {
+//                 targetElement1.value = '';
+//                 targetElement2.value = '';
+//                 return;
+//             }
+
+//             if (element.id === 'som') {
+//                 targetElement1.value = (element.value / data.usd).toFixed(2);
+//                 targetElement2.value = (element.value / data.eur).toFixed(2);
+//             }
+//             if (element.id === 'usd') {
+//                 targetElement1.value = (element.value * data.usd).toFixed(2);
+//                 targetElement2.value = ((element.value * data.usd) / data.eur).toFixed(2);
+//             }
+//             if (element.id === 'eur') {
+//                 targetElement1.value = (element.value * data.eur).toFixed(2);
+//                 targetElement2.value = ((element.value * data.eur) / data.usd).toFixed(2);
+//             }
+//         } catch (error) {
+//             console.error('Ошибка при конвертации:', error);
+//         }
+//     };
+// };
+
+// converter(somInput, usdInput, eurInput);
+// converter(usdInput, somInput, eurInput);
+// converter(eurInput, somInput, usdInput);
+
+// const cardBlock = document.querySelector('.card');
+// const btnNext = document.querySelector('#btn-next');
+// const btnPrev = document.querySelector('#btn-prev');
+
+// let cardId = 1;
+
+// const fetchCard = async (id) => {
+//     try {
+
+//         const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+//         const data = await response.json();
+
+//         const { title, id: dataId, completed } = data;
+//         const color = completed ? 'green' : 'red';
+//         const text = completed ? 'completed' : 'todo';
+
+//         cardBlock.innerHTML = `
+//             <p>${title}</p>
+//             <span style="color: ${color}">${text}</span>
+//             <span>${dataId}</span>
+//         `;
+//     } catch (error) {
+//         console.error('ошибка при загрузке карточки:', error);
+//     }
+// };
+
+// fetchCard(cardId);
+
+// btnNext.onclick = () => {
+//     cardId++;
+//     if (cardId > 200) cardId = 1;
+//     fetchCard(cardId);
+// };
+
+// btnPrev.onclick = () => {
+//     cardId--;
+//     if (cardId < 1) cardId = 200;
+//     fetchCard(cardId);
+// };
+
+// const searchInput = document.querySelector('#search-input');
+// const searchButton = document.querySelector('#search');
+// const city = document.querySelector('.city');
+// const temp = document.querySelector('.temp');
+
+// const API_KEY = '291aa3950880603684e43c6cc36aed88';
+// const BASE_API = 'https://api.openweathermap.org/data/2.5/weather';
+
+// searchButton.onclick = async () => {
+//     if (searchInput.value === '') {
+//         city.innerHTML = 'Введите название города';
+//         city.style.color = 'red';
+//         temp.innerHTML = '';
+//         return;
+//     }
+
+//     try {
+
+//         const response = await fetch(`${BASE_API}?q=${searchInput.value}&appid=${API_KEY}&units=metric&lang=ru`);
+//         const data = await response.json();
+
+//         if (data.name) {
+//             city.innerHTML = data.name;
+//             city.style.color = 'white';
+//             temp.innerHTML = `${Math.round(data.main.temp)}&deg;C`;
+//             searchInput.value = '';
+//         } else {
+//             city.innerHTML = 'город с таким названием не найден';
+//             city.style.color = 'red';
+//             temp.innerHTML = '';
+//         }
+//     } catch (error) {
+//         console.error('ошибка при поиске погоды:', error);
+//         city.innerHTML = 'ошибка соединения';
+//         temp.innerHTML = '';
+//     }
+// };
